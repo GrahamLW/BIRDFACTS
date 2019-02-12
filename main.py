@@ -1,4 +1,4 @@
-#Graham Wood
+#Graham L Wood
 #Last Edited: 12/2/19
 import tweepy
 
@@ -24,3 +24,5 @@ auth.set_access_token(accessToken, accessTokenSecret)
 #This line gives over the metaphorical
 #keys to tweepy
 api = tweepy.API(auth)
+
+api.update_status("Test 1")
