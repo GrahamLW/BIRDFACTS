@@ -1,22 +1,26 @@
 #Graham Wood
-#Last Edited: 10/1/19
+#Last Edited: 12/2/19
+import tweepy
 
-import operator
-from requests_oauthlib import OAuth2Session
-from oauthlib.oauth2 import BackendApplicationClient
-import json
+#key and secret allow for access to account
+#both are 'consumer' grade
+#meaning I can only use them for certain things
+key = 'YanDNcrWjSK2W2li61e3IDu2p'
+secret = 'yuCkce4As21ccfJNFtbgsytc0F3X0FMnIX6QH9odFU4t76CsWY'
 
-#Pull key and secret from keys.json
-#Required to access the account
-with open('keys.json', 'r') as f:
-   keys = json.loads(f.read())['twitter']
+#token and token secret are for tweepy
+#tweepy needs to be authorized before it can act
+accessToken = '1094330695118438400-9MFa6XVEBpa6Iq1rymqAkJdtqrRTMK'
+accessTokenSecret = 'Dd958RHPz1HadbWMTAcClB8ZJl4utkssonpfVwu905dic'
 
-#Base, requirement for almost every json action
-base = 'https://api.twitter.com/1.1/'
+#This line allows me to access my
+#Twitter account
+auth = tweepy.OAuthHandler(key, secret)
 
-#Update, url for specifically creating updates
-update = base + 'statuses/update.json'
+#This line enables tweepy to
+#also access my twitter account
+auth.set_access_token(accessToken, accessTokenSecret)
 
-def tweeter(status){
-	
-}
+#This line gives over the metaphorical
+#keys to tweepy
+api = tweepy.API(auth)
