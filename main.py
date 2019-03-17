@@ -3,6 +3,7 @@
 import tweepy
 import json
 import operator
+import time
 
 #This line imports a key and secret from a
 #file elsewhere on the computer
@@ -40,12 +41,12 @@ def tweetInput (string):
 
 #takes in a string and tweets it after 3600
 #seconds or one hour
-def oneHourTweet (string):
-	sleep(3600)
-	tweetInput(string)
+#def oneHourTweet (string):
+#	sleep(3600)
+#	tweetInput(string)
 
 def main ():
-	while:
+	while true:
 		##Sourcing information from Wikipedia will go here
 		oneHourTweet(tweet)
 
