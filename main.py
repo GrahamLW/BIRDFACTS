@@ -1,17 +1,26 @@
 #Graham L Wood
 #Last Edited: 12/2/19
 import tweepy
+import JSON
+import operator
+
+#This line imports a key and secret from a
+#file elsewhere on the computer
+#in order to use this program you will have
+#to have your own saved under a keys.json
+with open('keys.json', 'r') as f:
+   keys = json.loads(f.read())['twitter']
 
 #key and secret allow for access to account
 #both are 'consumer' grade
 #meaning I can only use them for certain things
-key = 'YanDNcrWjSK2W2li61e3IDu2p'
-secret = 'yuCkce4As21ccfJNFtbgsytc0F3X0FMnIX6QH9odFU4t76CsWY'
+key = keys['key']
+secret = keys['secret']
 
 #token and token secret are for tweepy
 #tweepy needs to be authorized before it can act
-accessToken = '1094330695118438400-9MFa6XVEBpa6Iq1rymqAkJdtqrRTMK'
-accessTokenSecret = 'Dd958RHPz1HadbWMTAcClB8ZJl4utkssonpfVwu905dic'
+accessToken = keys['accessToken']
+accessTokenSecret = keys['accessTokenSecret']
 
 #This line allows me to access my
 #Twitter account
@@ -25,4 +34,4 @@ auth.set_access_token(accessToken, accessTokenSecret)
 #keys to tweepy
 api = tweepy.API(auth)
 
-api.update_status("Test 1")
+api.update_status("Test 2")
