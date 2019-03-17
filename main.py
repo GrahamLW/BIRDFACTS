@@ -34,4 +34,18 @@ auth.set_access_token(accessToken, accessTokenSecret)
 #keys to tweepy
 api = tweepy.API(auth)
 
-api.update_status("Test 3")
+#takes in a string and tweets it immediately
+def tweetInput (string):
+	api.update_status(string)
+
+#takes in a string and tweets it after 3600
+#seconds or one hour
+def oneHourTweet (string):
+	sleep(3600)
+	tweetInput(string)
+
+def main ():
+	while:
+		##Sourcing information from Wikipedia will go here
+		oneHourTweet(tweet)
+
