@@ -1,7 +1,7 @@
 #Graham L Wood
 #Last Edited: 12/2/19
 import tweepy
-import JSON
+import json
 import operator
 
 #This line imports a key and secret from a
@@ -34,4 +34,4 @@ auth.set_access_token(accessToken, accessTokenSecret)
 #keys to tweepy
 api = tweepy.API(auth)
 
-api.update_status("Test 2")
+api.update_status("Test 3")
