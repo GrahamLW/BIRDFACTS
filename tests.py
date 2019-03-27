@@ -1,6 +1,7 @@
 #Graham L Wood
 #Last Edited 12/2/19
 import main
+import tweet
 import time
 
 #Automated Testing File
@@ -8,7 +9,7 @@ import time
 print("###########USER CHECK###########")
 user = main.api.me()
 print(user.name)
-assert user.name == "ConservationGo1"
+assert user.name == "Conservation Golem"
 print("######USER CHECK COMPLETE#######")
 
 #A small scale test, should probably be done at the end of the file
@@ -16,13 +17,13 @@ print("######USER CHECK COMPLETE#######")
 print("######TEST TWEET 24 HOURS#######")
 def testTweetsForDay():
 	base = "Automated Test Tweet "
-	i = 1
-	while i != 25:
-		main.tweetInput(base + str(i))
+	i = 2
+	while i != 26:
+		main.tweet.tweetInput(base + str(i))
 		i = i + 1
-		sleep (3600)
+		time.sleep (3600)
 
-twestTweetsForDay()		
+testTweetsForDay()		
 print("######TEST TWEET COMPLETE#######")
 
 

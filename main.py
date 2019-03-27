@@ -47,7 +47,10 @@ auth = tweepy.OAuthHandler(key, secret)
 #also access my twitter account
 auth.set_access_token(accessToken, accessTokenSecret)
 
+#This line gives over the metaphorical
+#keys to tweepy
+api = tweepy.API(auth)
 
-def main ():
-	while true:
+# def main ():
+# 	while true:
 
