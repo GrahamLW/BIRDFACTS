@@ -1,9 +1,25 @@
 #Graham L Wood
-#Last Edited: 12/2/19
+#Last Edited: 27/3/19
+
+#Library that greatly increases speed of authorizing and making tweets
 import tweepy
+
+#Used to access keys.json, which is where we keep our
+#passwords and secrets
 import json
+
+#???
 import operator
+
+#Mostly for the sleep function, which lets us
+#put pauses between tweets
 import time
+
+#Importing the tweeting functions
+import tweet
+
+#Import the wikipedia access functions
+import wikipedia
 
 #This line imports a key and secret from a
 #file elsewhere on the computer
@@ -31,22 +47,7 @@ auth = tweepy.OAuthHandler(key, secret)
 #also access my twitter account
 auth.set_access_token(accessToken, accessTokenSecret)
 
-#This line gives over the metaphorical
-#keys to tweepy
-api = tweepy.API(auth)
-
-#takes in a string and tweets it immediately
-def tweetInput (string):
-	api.update_status(string)
-
-#takes in a string and tweets it after 3600
-#seconds or one hour
-#def oneHourTweet (string):
-#	sleep(3600)
-#	tweetInput(string)
 
 def main ():
 	while true:
-		##Sourcing information from Wikipedia will go here
-		oneHourTweet(tweet)
 

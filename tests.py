@@ -13,7 +13,6 @@ print("######USER CHECK COMPLETE#######")
 
 #A small scale test, should probably be done at the end of the file
 #or commented out when not wanted
-
 print("######TEST TWEET 24 HOURS#######")
 def testTweetsForDay():
 	base = "Automated Test Tweet "
