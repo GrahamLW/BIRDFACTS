@@ -5,6 +5,8 @@
 import tweepy
 import json
 
+
+#returns an api objhect, which is used in conjunction with other functions
 def authenticate ():
 	with open('keys.json', 'r') as f:
    		keys = json.loads(f.read())['twitter']

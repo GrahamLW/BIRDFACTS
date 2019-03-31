@@ -3,11 +3,13 @@
 import main
 import tweet
 import time
+import authenticator
 
+api = authenticator.authenticate()
 #Automated Testing File
 #Rudimentary Check to see if it actually is connected to the internet
 print("###########USER CHECK###########")
-user = main.api.me()
+user = api.me()
 print(user.name)
 assert user.name == "Conservation Golem"
 print("######USER CHECK COMPLETE#######")

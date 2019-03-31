@@ -13,9 +13,8 @@ api = authenticator.authenticate()
 def tweetInput (string):
 	api.update_status(string)
 
-#takes in a string and tweets it after 3600
-#seconds or one hour
-def oneHourTweet (string):
-	sleep(3600)
+#takes in a string and a number of seconds, will wait that long and then tweet
+def timedTweet (string, seconds):
+	sleep(seconds)
 	tweetInput(string)
 
