@@ -21,7 +21,7 @@ def testTweetsForDay():
 	base = "Automated Test Tweet "
 	i = 2
 	while i != 26:
-		main.tweet.tweetInput(base + str(i))
+		tweet.tweetInput(base + str(i))
 		i = i + 1
 		time.sleep (3600)
 
