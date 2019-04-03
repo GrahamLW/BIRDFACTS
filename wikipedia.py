@@ -8,6 +8,7 @@ exclusionList = ["edit", "Category", "List", "Conservation", "species", "subspec
 					"Binomial", "Trinomial", "/wiki/Fish", "/wiki/Mollusca", "/wiki/Animalia", "/wiki/Aves",
 					"/wiki/Reptilia", "/wiki/Fish", "/wiki/Mamallia", "/wiki/Amphibia", "/wiki/Arthropoda"]
 
+
 baseSite = "http://en.wikipedia.org"
 extinctWild = "/wiki/List_of_extinct_in_the_wild_animals"
 criticalEndanger = "/wiki/IUCN_Red_List_critically_endangered_species_(Animalia)"
@@ -15,16 +16,25 @@ normalEndanger = "/wiki/IUCN_Red_List_endangered_species_(Animalia)"
 vulnerable = "/wiki/IUCN_Red_List_vulnerable_species_(Animalia)"
 nearThreatened = "/wiki/IUCN_Red_List_near_threatened_species_(Animalia)"
 
-extinctWildResponse = requests.get(baseSite + extinctWild)
-criticalEndangerResponse = requests.get(baseSite + criticalEndanger)
-normalEndangerResponse = requests.get(baseSite + normalEndanger)
-vulnerableResponse = requests.get(baseSite + vulnerable)
-nearThreatenedResponse = requests.get(baseSite + nearThreatened)
+def updateResponse(linkExtension):
+	return requests.get(baseSite + linkExtension)
 
-extinctWildBSOBJ = BeautifulSoup(extinctWildResponse.content, "html.parser")
-extinctWildBSOBJ = extinctWildBSOBJ.find(id = "bodyContent")
-criticalEndangerBSOBJ = BeautifulSoup(criticalEndangerResponse.content, "html.parser")
-criticalEndangerBSOBJ = criticalEndangerBSOBJ.find(id = "bodyContent")
+def updateBsObj(htmlResponse):
+	bsObj = BeautifulSoup(htmlResponse.content, "html.parser")
+	bsObj = bsObj.find(id = 'bodyContent')
+	return bsObj
+
+extinctWildResponse = updateResponse(extinctWild)
+criticalEndangerResponse = updateResponse(criticalEndanger)
+normalEndangerResponse = updateResponse(normalEndanger)
+vulnerableResponse = updateResponse(vulnerable)
+nearThreatenedResponse = updateResponse(nearThreatened)
+
+extinctWildBSOBJ = updateBsObj(extinctWildResponse)
+criticalEndangerBSOBJ = updateBsObj(criticalEndangerResponse)
+normalEndangerBSOBJ = updateBsObj(normalEndangerResponse)
+vulnerableBSOBJ = updateBsObj(vulnerableResponse)
+nearThreatenedBSOBJ = updateBsObj(nearThreatenedResponse)
 
 #takes in a Beautiful Soup Object and returns a dictionary
 def pageToDict(bsObj):
@@ -52,8 +62,6 @@ def pageToDict(bsObj):
 		if deleted == False:
 			i = i + 1
 	return dict(zip(keys, values))
-
-print(pageToDict(extinctWildBSOBJ))
 
 
 
