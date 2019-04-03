@@ -10,11 +10,11 @@ exclusionList = ["edit", "Category", "List", "Conservation", "species", "subspec
 
 
 baseSite = "http://en.wikipedia.org"
-extinctWild = "/wiki/List_of_extinct_in_the_wild_animals"
-criticalEndanger = "/wiki/IUCN_Red_List_critically_endangered_species_(Animalia)"
-normalEndanger = "/wiki/IUCN_Red_List_endangered_species_(Animalia)"
-vulnerable = "/wiki/IUCN_Red_List_vulnerable_species_(Animalia)"
-nearThreatened = "/wiki/IUCN_Red_List_near_threatened_species_(Animalia)"
+extinctWildPage = "/wiki/List_of_extinct_in_the_wild_animals"
+criticalEndangerPage = "/wiki/IUCN_Red_List_critically_endangered_species_(Animalia)"
+normalEndangerPage = "/wiki/IUCN_Red_List_endangered_species_(Animalia)"
+vulnerablePage = "/wiki/IUCN_Red_List_vulnerable_species_(Animalia)"
+nearThreatenedPage = "/wiki/IUCN_Red_List_near_threatened_species_(Animalia)"
 
 def updateResponse(linkExtension):
 	return requests.get(baseSite + linkExtension)
@@ -24,20 +24,10 @@ def updateBsObj(htmlResponse):
 	bsObj = bsObj.find(id = 'bodyContent')
 	return bsObj
 
-extinctWildResponse = updateResponse(extinctWild)
-criticalEndangerResponse = updateResponse(criticalEndanger)
-normalEndangerResponse = updateResponse(normalEndanger)
-vulnerableResponse = updateResponse(vulnerable)
-nearThreatenedResponse = updateResponse(nearThreatened)
 
-extinctWildBSOBJ = updateBsObj(extinctWildResponse)
-criticalEndangerBSOBJ = updateBsObj(criticalEndangerResponse)
-normalEndangerBSOBJ = updateBsObj(normalEndangerResponse)
-vulnerableBSOBJ = updateBsObj(vulnerableResponse)
-nearThreatenedBSOBJ = updateBsObj(nearThreatenedResponse)
-
-#takes in a Beautiful Soup Object and returns a dictionary
-def pageToDict(bsObj):
+#takes in a Beautiful Soup Object and the value all dictionary keys should have
+#and returns a dictionary with the correct text and the correct values
+def bsObjToDict(bsObj):
 	#make a lis tof our keys
 	keys = [
 	  tag.get('title')
@@ -54,7 +44,6 @@ def pageToDict(bsObj):
 		for exclusion in exclusionList:
 			if exclusion in values[i]\
 			 or keys[i] == None:
-				print(i)
 				keys.pop(i)
 				values.pop(i)
 				deleted = True
@@ -62,6 +51,44 @@ def pageToDict(bsObj):
 		if deleted == False:
 			i = i + 1
 	return dict(zip(keys, values))
+
+#updates all the pages into a dictionary, returns that dictionary
+def updateDictionary():
+	extinctWildResponse = updateResponse(extinctWildPage)
+	criticalEndangerResponse = updateResponse(criticalEndangerPage)
+	normalEndangerResponse = updateResponse(normalEndangerPage)
+	vulnerableResponse = updateResponse(vulnerablePage)
+	nearThreatenedResponse = updateResponse(nearThreatenedPage)
+
+	extinctWildBSOBJ = updateBsObj(extinctWildResponse)
+	criticalEndangerBSOBJ = updateBsObj(criticalEndangerResponse)
+	normalEndangerBSOBJ = updateBsObj(normalEndangerResponse)
+	vulnerableBSOBJ = updateBsObj(vulnerableResponse)
+	nearThreatenedBSOBJ = updateBsObj(nearThreatenedResponse)
+
+	extinctWildDict = bsObjToDict(extinctWildBSOBJ)
+	critcalEndangerDict = bsObjToDict(criticalEndangerBSOBJ)
+	normalEndangerDict = bsObjToDict(normalEndangerBSOBJ)
+	vulnerableDict = bsObjToDict(vulnerableBSOBJ)
+	nearThreatenedDict = bsObjToDict(nearThreatenedBSOBJ)
+
+	extinctWildDict = {x: "Extinct in Wild" for x in extinctWildDict}
+	critcalEndangerDict = {x: "Critcalally Endangered" for x in critcalEndangerDict}
+	normalEndangerDict = {x: "Endangered" for x in normalEndangerDict}
+	vulnerableDict = {x: "Vulnerable" for x in vulnerableDict}
+	nearThreatenedDict = {x: "Near Threatened"  for x in nearThreatenedDict}
+
+	finalDictionary = {}
+	finalDictionary.update(extinctWildDict)
+	finalDictionary.update(critcalEndangerDict)
+	finalDictionary.update(normalEndangerDict)
+	finalDictionary.update(vulnerableDict)
+	finalDictionary.update(nearThreatenedDict)
+
+	return finalDictionary
+
+updateDictionary()
+
 
 
 
