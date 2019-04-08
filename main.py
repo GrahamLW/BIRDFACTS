@@ -12,6 +12,7 @@ import wikipedia
 #Import random library
 import random
 
+#Takes in a dictionary and returns a random selection from that dictionary
 def selector(dictionary):
 	return random.choice(list(dictionary.items()))
 

@@ -16,9 +16,11 @@ normalEndangerPage = "/wiki/IUCN_Red_List_endangered_species_(Animalia)"
 vulnerablePage = "/wiki/IUCN_Red_List_vulnerable_species_(Animalia)"
 nearThreatenedPage = "/wiki/IUCN_Red_List_near_threatened_species_(Animalia)"
 
+#Takes a string for the text of the webpage and returns and html response
 def updateResponse(linkExtension):
 	return requests.get(baseSite + linkExtension)
 
+#Takes in a html response and returns the response parsed with beatuiful soup
 def updateBsObj(htmlResponse):
 	bsObj = BeautifulSoup(htmlResponse.content, "html.parser")
 	bsObj = bsObj.find(id = 'bodyContent')
