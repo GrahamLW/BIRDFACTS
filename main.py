@@ -28,8 +28,17 @@ def main ():
 	dictionary = wikipedia.updateDictionary()
 	secondsString = input("Select time in seconds between tweets, I recommend 3600 ")
 	seconds = int(secondsString)
+	past100 = []
 	while True:
 		species, status = selector(dictionary)
+		if species in past100:
+			species, status = selector(dictionary)
 		tweet = species + " is currently considered to be " + status
 		timedTweet(tweets, seconds)
+		past100.push(species)
+		if len(past100) > 100:
+			past100.pop()
+
+
+main()
 
