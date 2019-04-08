@@ -78,8 +78,7 @@ def updateDictionary():
 	vulnerableDict = {x: "Vulnerable" for x in vulnerableDict}
 	nearThreatenedDict = {x: "Near Threatened"  for x in nearThreatenedDict}
 
-	finalDictionary = {}
-	finalDictionary.update(extinctWildDict)
+	finalDictionary = extinctWildDict
 	finalDictionary.update(critcalEndangerDict)
 	finalDictionary.update(normalEndangerDict)
 	finalDictionary.update(vulnerableDict)

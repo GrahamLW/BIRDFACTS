@@ -22,7 +22,7 @@ def shortSeries():
 	for i in 20:
 		species, status = selector(dictionary)
 		tweet = species + " is currently considered to be " + status
-		timedTweet(tweets, seconds)
+		tweet.timedTweet(tweets, seconds)
 
 def main ():
 	dictionary = wikipedia.updateDictionary()
@@ -33,11 +33,12 @@ def main ():
 		species, status = selector(dictionary)
 		if species in past100:
 			species, status = selector(dictionary)
-		tweet = species + " is currently considered to be " + status
-		timedTweet(tweets, seconds)
-		past100.push(species)
+		status = species + " is currently considered to be " + status
+		past100.append(species)
 		if len(past100) > 100:
 			past100.pop()
+		tweet.timedTweet(status, seconds)
+		
 
 
 main()

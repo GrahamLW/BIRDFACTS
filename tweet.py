@@ -6,6 +6,7 @@
 #be called from main, but here it is anyway
 import tweepy
 import authenticator
+import time
 
 api = authenticator.authenticate()
 
@@ -15,6 +16,6 @@ def tweetInput (string):
 
 #takes in a string and a number of seconds, will wait that long and then tweet
 def timedTweet (string, seconds):
-	sleep(seconds)
+	time.sleep(seconds)
 	tweetInput(string)
 
