@@ -10,7 +10,6 @@ Once that is complete the user must make their account a developer account. Afte
 
 The user will need to take the secret, key, accessToken, and accessTokenSecret for their unique account and put it into a file in the folder called "keys.json" The structure should look like this:
 
-
 {
 	"twitter": {
 	"key" : "Your Key",
@@ -20,7 +19,6 @@ The user will need to take the secret, key, accessToken, and accessTokenSecret f
 	"accessTokenSecret" : "Your Token Secret"
 	}
 }
-
 
 In order to run the program you will need to download the tweepy library. Tweepy gives the program a variety of useful functions that allow us to make the program work. Tweepy can be downloaded at https://github.com/tweepy/tweepy
 
