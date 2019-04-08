@@ -6,9 +6,13 @@ import time
 import authenticator
 import wikipedia
 
-api = authenticator.authenticate()
+
 #Automated Testing File
 #Rudimentary Check to see if it actually is connected to the internet
+print("######Authenitcation Check######")
+api = authenticator.authenticate()
+print("##Authenitcation Check Complete#")
+
 print("###########USER CHECK###########")
 user = api.me()
 print(user.name)
